@@ -1,6 +1,7 @@
 module Main where
 
 import Lib
+import Data.List
 
 main :: IO ()
 main = putStrLn "Hello Worlds"
@@ -61,3 +62,28 @@ isPresen2 = elem 1 nums
 
 maxNum = maximum nums
 minNum = minimum nums
+
+productOfNums = product nums
+
+zeroTo10 = [0..10]
+
+evenList = [2,4..40]
+
+charList = ['A'..'Z']
+
+alternameCharList = ['A','C'..'Z']
+
+many2s = take 10 (repeat 2)
+
+many3s = replicate 10 3
+
+cycleList = take 10 (cycle [1..5]) -- [1,2,3,4,5,1,2,3,4,5]
+
+listTimes2 = [x * 2 | x <- [1..10]] -- [2,4,6,8,10,12,14,16,18,20]
+
+under10 = [x * 2 | x <- [1..10], x * 2 <= 10]
+
+divisibleBy13And9 = [x | x <- [1..1000], x `mod` 13 == 0, x `mod` 9 == 0]
+
+sortedList = sort [1,3,21,4,3,1,5,33,0,-1]
+
