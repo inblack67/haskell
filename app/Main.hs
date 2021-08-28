@@ -87,3 +87,17 @@ divisibleBy13And9 = [x | x <- [1..1000], x `mod` 13 == 0, x `mod` 9 == 0]
 
 sortedList = sort [1,3,21,4,3,1,5,33,0,-1]
 
+sumOfLists = zipWith (+) [1,2,3,4,5] [6,7,8,9,10] -- [7,9,11,13,15]
+
+filteredList = filter (>10) sumOfLists
+
+evensUpto20 = takeWhile (<=20) [2,4..] -- lazy
+
+multipliedList = foldl (*) 1 [1..5] -- 120
+multipliedList2 = foldl (*) 2 [1..5] -- 240
+multipliedList4 = foldr (*) 1 [1..5]
+
+-- list comprehension
+powerOf3List = [ 3 ^ n | n <- [1..10] ] -- [3,9,27,81,243,729,2187,6561,19683,59049]
+
+multiplicationTable = [ [ x * y | y <- [1..10] ] | x <- [1..10] ] -- generates tables of numbers 1-10
