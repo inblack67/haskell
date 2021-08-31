@@ -136,3 +136,24 @@ factorial n = n * factorial (n-1)
 
 nativeFactorial :: Int -> Int
 nativeFactorial n = product [1..n]
+
+-- guards
+
+isOdd :: Int -> Bool
+isOdd n 
+ | n `mod` 2 == 0 = False 
+ | otherwise = True
+
+withGuards :: Int -> String
+withGuards age
+ | (age >= 18) && (age <= 50) = "Rockstar" 
+ | otherwise = "ok"
+
+
+-- where clause
+
+avg :: Double -> Double -> String
+avg x y 
+ | res <= 10.0 = "ok"
+ | otherwise = "not ok"
+ where res = (x + y)/2
