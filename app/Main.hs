@@ -101,3 +101,38 @@ multipliedList4 = foldr (*) 1 [1..5]
 powerOf3List = [ 3 ^ n | n <- [1..10] ] -- [3,9,27,81,243,729,2187,6561,19683,59049]
 
 multiplicationTable = [ [ x * y | y <- [1..10] ] | x <- [1..10] ] -- generates tables of numbers 1-10
+
+info = ("John", 24)
+
+name = fst info
+age = snd info
+
+names = ["john", "doe", "ok"]
+addresses = ["51", "52", "53"]
+
+namesAndAddresses = zip names addresses -- [("john","51"),("doe","52"),("ok","53")]
+
+-- take inputs
+greet = do
+ putStrLn "Your name?"
+ name <- getLine
+ putStrLn ("hello " ++ name)
+
+-- functions
+addNums :: Int -> Int -> Int 
+addNums x y = x+y
+
+addTuples :: (Int, Int) -> (Int, Int) -> (Int, Int)
+addTuples (x,y) (x2, y2) = (x+x2, y+y2)
+
+whatAge :: Int -> String
+whatAge 18 = "drive"
+whatAge _ = "nah"
+
+-- recrusion
+factorial :: Int -> Int
+factorial 0 = 1
+factorial n = n * factorial (n-1)
+
+nativeFactorial :: Int -> Int
+nativeFactorial n = product [1..n]
