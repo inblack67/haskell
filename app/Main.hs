@@ -157,3 +157,28 @@ avg x y
  | res <= 10.0 = "ok"
  | otherwise = "not ok"
  where res = (x + y)/2
+
+getListItems :: [Int] -> String
+getListItems [] = "Empty list"
+getListItems (firstItem:[]) = "starts with " ++ show firstItem -- show changes any value to string
+getListItems (f1:s1:[]) = "starts with " ++ show f1 ++ show s1
+getListItems (firstItem:rest) = show firstItem ++ " " ++ show rest
+
+-- as
+getFirstChar :: String -> String
+getFirstChar [] = "Empty string" 
+getFirstChar all@(x:xs) = "breakup of " ++ all ++ " is " ++ [x] ++ " and " ++ xs
+
+-- higher order functions
+times4 :: Int -> Int
+times4 num = num * 4
+
+mapMe :: [Int] -> [Int]
+mapMe nums = map times4 nums
+
+recursionMultiply :: [Int] -> [Int]
+recursionMultiply [] = []
+
+-- Returns a list which has x as first element, followed by all elements in xs. In other functional languages, this is usually called cons, because it “cons”tructs a list recursively by repeated application from an empty list:
+
+recursionMultiply (x:xs) = times4 x : recursionMultiply xs
