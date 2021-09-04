@@ -179,6 +179,48 @@ mapMe nums = map times4 nums
 recursionMultiply :: [Int] -> [Int]
 recursionMultiply [] = []
 
--- Returns a list which has x as first element, followed by all elements in xs. In other functional languages, this is usually called cons, because it “cons”tructs a list recursively by repeated application from an empty list:
+-- : => Returns a list which has x as first element, followed by all elements in xs. In other functional languages, this is usually called cons, because it “cons”tructs a list recursively by repeated application from an empty list:
 
 recursionMultiply (x:xs) = times4 x : recursionMultiply xs
+
+areStringsEqual :: [Char] -> [Char] -> Bool
+areStringsEqual [] [] = True
+areStringsEqual (x:xs) (y:ys) = x == y && areStringsEqual xs ys 
+areStringsEqual _ _ = False
+
+-- function as arg
+doMult :: (Int -> Int) -> Int
+doMult func = func 3
+res = doMult times4
+
+-- lambda = nameless functions
+oneToTen = map (\x -> x * 2) [1,2,3]
+
+-- <, >, <=, >=, ==, \= -- NOT EQUAL TO
+-- &&, ||, not
+
+-- if
+doubledEvens :: Int -> Int
+doubledEvens num = 
+ if num `mod` 2 == 0
+ then
+  num * 2
+ else
+  num
+
+-- case
+getPerm :: Int -> String
+getPerm age = case age of
+ 18 -> "ok"
+ _ -> "not ok"
+
+
+-- @todo => enums
+
+-- custom
+data Customer = Customer String String Double deriving Show -- to use as string
+
+someone :: Customer
+someone = Customer "ok" "ok" 23.3
+getBalance :: Customer -> Double
+getBalance (Customer _ _ balance) = balance
