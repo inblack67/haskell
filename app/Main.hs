@@ -1,5 +1,6 @@
 module Main where
 
+import System.IO 
 import Lib
 import Data.List
 
@@ -224,3 +225,81 @@ someone :: Customer
 someone = Customer "ok" "ok" 23.3
 getBalance :: Customer -> Double
 getBalance (Customer _ _ balance) = balance
+
+data RPS = Rock | Paper | Scissors
+shoot :: RPS -> RPS -> Bool
+shoot Paper Rock = False
+shoot Rock Scissors = False
+shoot Paper Scissors = True
+shoot _ _ = False
+
+-- circle receives one float where as rectangle receives 2
+data Shape = Circle Float | Rectangle Float Float deriving Show
+area :: Shape -> Float
+area (Circle r) = pi * r ^ 2
+area (Rectangle l b) = l * b
+
+-- . = chains values together
+-- "$" = inflicts precedence
+
+sumValues2 = putStrLn (show (1 + 2))
+sumValues = putStrLn . show $ 1 + 2
+
+
+-- type classes
+data Employee = Employee { ename :: String, eposition :: String, eid :: Int } deriving (Eq, Show) -- can show and check for equality now
+
+e1 = Employee { ename = "ok", eposition = "dev", eid = 1 }
+e2 = Employee { ename = "ok", eposition = "dev", eid = 2 }
+e3 = Employee { ename = "ok", eposition = "dev", eid = 2 }
+isSameEmployee = e1 == e2 -- False
+isSameEmployee2 = e1 == e3 -- True
+printEmployee = show e1
+
+-- override Eq and Show
+data ShirtSize = S | M | L
+
+instance Eq ShirtSize where
+  S == S = True
+  M == M = True
+  L == L = True
+  _ == _ = False
+
+instance Show ShirtSize where
+  show S = "Small"
+  show M = "Medium"
+  show L = "Large"
+
+smallAvail = S `elem` [S, M, L]
+sSize = show S
+
+-- custom type classes
+-- a = any time that represents the function => areEqual
+class MyEq a where
+  areEqual :: a -> a -> Bool
+
+instance MyEq ShirtSize where
+  areEqual S S = True
+  areEqual M M = True
+  areEqual L L = True
+  areEqual _ _ = True
+
+newSize = areEqual M M
+
+
+-- file i/o
+writeToFile = do
+  myFile <- openFile "test.txt" WriteMode
+  hPutStrLn myFile ("Random text")
+  hClose myFile
+
+readFromFile = do
+  myFile2 <- openFile "test.txt" ReadMode
+  contents <- hGetContents myFile2
+  putStr contents
+  hClose myFile2
+
+-- fibonacci
+
+fib = 1 : 1 : [ a + b | (a, b) <- zip fib (tail fib) ] -- will geneate infinitely if not called lazily
+fib20 = fib !! 20
